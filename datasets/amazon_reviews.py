@@ -6,8 +6,10 @@ from datetime import date
 
 
 class AmazonReviewsDataset(AbstractDataset):
+class AmazonReviewsDataset(AbstractDataset):
     @classmethod
     def code(cls):
+        return 'amazon-reviews'
         return 'amazon-reviews'
 
     @classmethod
