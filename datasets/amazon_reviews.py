@@ -5,14 +5,14 @@ import pandas as pd
 from datetime import date
 
 
-class ML20MDataset(AbstractDataset):
+class AmazonReviewsDataset(AbstractDataset):
     @classmethod
     def code(cls):
-        return 'ml-20m'
+        return 'amazon-reviews'
 
     @classmethod
     def url(cls):
-        return 'http://files.grouplens.org/datasets/movielens/ml-20m.zip'
+        return 'http://files.grouplens.org/datasets/movielens/ml-20m-reviews.zip'
         
 
     @classmethod

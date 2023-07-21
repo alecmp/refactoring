@@ -8,7 +8,7 @@ import numpy as np
 if __name__ == "__main__":
     args.mode = "train"
     dataset_code = args.dataset_code
-    args.dataset_code = dataset_code if dataset_code else input('ml-1m, ml-20m: ')
+    args.dataset_code = dataset_code if dataset_code else input('ml-1m, amazon-reviews: ')
     args.min_rating = 0 if args.dataset_code == 'ml-1m' else 4
     args.min_uc = 5
     args.min_sc = 0
