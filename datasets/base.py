@@ -92,7 +92,7 @@ class AbstractDataset(metaclass=ABCMeta):
            print('Raw data already exists. Skip downloading')
            return
         print("Raw file doesn't exist. Downloading...")
-        if self.is_zipfile():
+        """ if self.is_zipfile():
             tmproot = Path(tempfile.mkdtemp())
             tmpzip = tmproot.joinpath('file.zip')
             tmpfolder = tmproot.joinpath('folder')
@@ -103,14 +103,14 @@ class AbstractDataset(metaclass=ABCMeta):
             shutil.move(tmpfolder, folder_path)
             shutil.rmtree(tmproot)
             print()
-        else:
-            tmproot = Path(tempfile.mkdtemp())
-            tmpfile = tmproot.joinpath('file')
-            download(self.url(), tmpfile)
-            folder_path.mkdir(parents=True)
-            shutil.move(tmpfile, folder_path.joinpath('ratings.csv'))
-            shutil.rmtree(tmproot)
-            print()
+        else: """
+        tmproot = Path(tempfile.mkdtemp())
+        tmpfile = tmproot.joinpath('file')
+        download(self.url(), tmpfile)
+        folder_path.mkdir(parents=True)
+        shutil.move(tmpfile, folder_path.joinpath('ratings.csv'))
+        shutil.rmtree(tmproot)
+        print()
 
     def make_implicit(self, df):
         print('Turning into implicit ratings')
