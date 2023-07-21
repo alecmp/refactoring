@@ -34,7 +34,7 @@ class AmazonReviewsDataset(AbstractDataset):
         #file_path = folder_path.joinpath('rating_50k.csv') #ratings
         df = pd.read_csv('data/ratings.csv', header=0)
         df.columns = ['uid', 'sid', 'rating', 'timestamp']
-        #c_file_path = folder_path.joinpath('output_50k.csv') #movies
+        #c_file_path = folder_path.joinpath('output_50kk.csv') #movies
         mv_df = pd.read_csv('data/products.csv', header=0)
         mv_df.columns = ['sid', 'title', 'categories']
         mv_df = mv_df[["sid", "categories"]]
