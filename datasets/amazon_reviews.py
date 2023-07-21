@@ -13,7 +13,7 @@ class AmazonReviewsDataset(AbstractDataset):
 
     @classmethod
     def url(cls):
-        return 'http://files.grouplens.org/datasets/movielens/ml-20m-reviews.zip'
+        return 'http://files.grouplens.org/datasets/movielens/ml-20m.zip'
         
 
     @classmethod
