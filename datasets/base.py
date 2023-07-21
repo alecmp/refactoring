@@ -32,24 +32,7 @@ class AbstractDataset(metaclass=ABCMeta):
 
     @classmethod
     def raw_code(cls):
-        return cls.code()
-
-    @classmethod
-    @abstractmethod
-    def url(cls):
-        pass
-
-    @classmethod
-    def is_zipfile(cls):
-        return True
-
-    """ @classmethod
-    def zip_file_content_is_folder(cls):
-        return True """
-
-    @classmethod
-    def all_raw_file_names(cls):
-        return []
+        return cls.code()  
 
     @abstractmethod
     def load_ratings_df(self):
@@ -68,7 +51,6 @@ class AbstractDataset(metaclass=ABCMeta):
             return
         if not dataset_path.parent.is_dir():
             dataset_path.parent.mkdir(parents=True)
-        #self.maybe_download_raw_dataset()
         df = self.load_ratings_df()
         df = self.make_implicit(df)
         df = self.filter_triplets(df)
@@ -83,34 +65,6 @@ class AbstractDataset(metaclass=ABCMeta):
                    'tokenizers': tokenizers}
         with dataset_path.open('wb') as f:
             pickle.dump(dataset, f)
-
-    def maybe_download_raw_dataset(self):
-        folder_path = self._get_rawdata_folder_path()
-        print(folder_path)
-        if folder_path.is_dir() and\
-           all(folder_path.joinpath(filename).is_file() for filename in self.all_raw_file_names()):
-           print('Raw data already exists. Skip downloading')
-           return
-        print("Raw file doesn't exist. Downloading...")
-        """ if self.is_zipfile():
-            tmproot = Path(tempfile.mkdtemp())
-            tmpzip = tmproot.joinpath('file.zip')
-            tmpfolder = tmproot.joinpath('folder')
-            download(self.url(), tmpzip)
-            unzip(tmpzip, tmpfolder)
-            if self.zip_file_content_is_folder():
-                tmpfolder = tmpfolder.joinpath(os.listdir(tmpfolder)[0])
-            shutil.move(tmpfolder, folder_path)
-            shutil.rmtree(tmproot)
-            print()
-        else: """
-        tmproot = Path(tempfile.mkdtemp())
-        tmpfile = tmproot.joinpath('file')
-        #download(self.url(), tmpfile)
-        folder_path.mkdir(parents=True)
-        shutil.move(tmpfile, folder_path.joinpath('ratings.csv'))
-        shutil.rmtree(tmproot)
-        print()
 
     def make_implicit(self, df):
         print('Turning into implicit ratings')
@@ -206,10 +160,6 @@ class AbstractDataset(metaclass=ABCMeta):
 
     def _get_rawdata_root_path(self):
         return Path(RAW_DATASET_ROOT_FOLDER)
-
-    def _get_rawdata_folder_path(self):
-        root = self._get_rawdata_root_path()
-        return root.joinpath(self.raw_code())
 
     def _get_preprocessed_root_path(self):
         root = self._get_rawdata_root_path()
