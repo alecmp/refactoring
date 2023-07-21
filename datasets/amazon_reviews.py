@@ -5,7 +5,7 @@ import pandas as pd
 from datetime import date
 
 
-class ML20MDataset(AbstractDataset):
+class AmazonReviewsDataset(AbstractDataset):
     @classmethod
     def code(cls):
         return 'ml-20m'
