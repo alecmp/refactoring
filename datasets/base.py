@@ -68,7 +68,7 @@ class AbstractDataset(metaclass=ABCMeta):
             return
         if not dataset_path.parent.is_dir():
             dataset_path.parent.mkdir(parents=True)
-        #self.maybe_download_raw_dataset()
+        self.maybe_download_raw_dataset()
         df = self.load_ratings_df()
         df = self.make_implicit(df)
         df = self.filter_triplets(df)
@@ -235,4 +235,3 @@ class AbstractDataset(metaclass=ABCMeta):
         df = self.make_implicit(df)
         df = self.filter_triplets(df)
         return df
-
