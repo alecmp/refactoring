@@ -43,9 +43,9 @@ class AbstractDataset(metaclass=ABCMeta):
     def is_zipfile(cls):
         return True
 
-    @classmethod
+    """ @classmethod
     def zip_file_content_is_folder(cls):
-        return True
+        return True """
 
     @classmethod
     def all_raw_file_names(cls):
@@ -106,7 +106,7 @@ class AbstractDataset(metaclass=ABCMeta):
         else: """
         tmproot = Path(tempfile.mkdtemp())
         tmpfile = tmproot.joinpath('file')
-        download(self.url(), tmpfile)
+        #download(self.url(), tmpfile)
         folder_path.mkdir(parents=True)
         shutil.move(tmpfile, folder_path.joinpath('ratings.csv'))
         shutil.rmtree(tmproot)
