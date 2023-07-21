@@ -9,7 +9,6 @@ class AmazonReviewsDataset(AbstractDataset):
     @classmethod
     def code(cls):
         return 'amazon-reviews'
-        return 'amazon-reviews'
 
     @classmethod
     def url(cls):
@@ -18,7 +17,7 @@ class AmazonReviewsDataset(AbstractDataset):
 
     @classmethod
     def zip_file_content_is_folder(cls):
-        return True
+        return False
 
     @classmethod
     def all_raw_file_names(cls):
