@@ -8,11 +8,11 @@ from datetime import date
 class AmazonReviewsDataset(AbstractDataset):
     @classmethod
     def code(cls):
-        return 'ml-20m'
+        return 'amazon-reviews'
 
     @classmethod
     def url(cls):
-        return 'http://files.grouplens.org/datasets/movielens/ml-20m.zip'
+        return 'http://files.grouplens.org/datasets/movielens/amazon-reviews.zip'
         
 
     @classmethod
