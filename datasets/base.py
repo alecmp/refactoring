@@ -53,7 +53,6 @@ class AbstractDataset(metaclass=ABCMeta):
             dataset_path.parent.mkdir(parents=True)
         df = self.load_ratings_df()
         df = self.make_implicit(df)
-        df = self.filter_triplets(df)
         df, tokenizers = self.content_to_id_list(df)
         df, umap, smap = self.densify_index(df)
         train, val, test = self.split_df(df, len(umap))
@@ -73,19 +72,6 @@ class AbstractDataset(metaclass=ABCMeta):
         # return df[['uid', 'sid', 'timestamp']]
         return df
 
-    def filter_triplets(self, df):
-        print('Filtering triplets')
-        if self.min_sc > 0:
-            item_sizes = df.groupby('sid').size()
-            good_items = item_sizes.index[item_sizes >= self.min_sc]
-            df = df[df['sid'].isin(good_items)]
-
-        if self.min_uc > 0:
-            user_sizes = df.groupby('uid').size()
-            good_users = user_sizes.index[user_sizes >= self.min_uc]
-            df = df[df['uid'].isin(good_users)]
-
-        return df
 
     def content_to_id_list(self, df):
         tokenizer = self._get_content_tokenizer_class()
@@ -180,9 +166,7 @@ class AbstractDataset(metaclass=ABCMeta):
         dataset_path = self._get_preprocessed_dataset_path()
         if not dataset_path.parent.is_dir():
             dataset_path.parent.mkdir(parents=True)
-        self.maybe_download_raw_dataset()
         df = self.load_ratings_df()
         df = self.make_implicit(df)
-        df = self.filter_triplets(df)
         return df
 
