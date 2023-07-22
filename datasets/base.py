@@ -138,25 +138,6 @@ class AbstractDataset(metaclass=ABCMeta):
         elif self.args.split == 'holdout':
             print('Splitting')
             sys.exit()
-            np.random.seed(self.args.dataset_split_seed)
-            eval_set_size = self.args.eval_set_size
-
-            # Generate user indices
-            permuted_index = np.random.permutation(user_count)
-            train_user_index = permuted_index[                :-2*eval_set_size]
-            val_user_index   = permuted_index[-2*eval_set_size:  -eval_set_size]
-            test_user_index  = permuted_index[  -eval_set_size:                ]
-
-            # Split DataFrames
-            train_df = df.loc[df['uid'].isin(train_user_index)]
-            val_df   = df.loc[df['uid'].isin(val_user_index)]
-            test_df  = df.loc[df['uid'].isin(test_user_index)]
-
-            # DataFrame to dict => {uid : list of sid's}
-            train = dict(train_df.groupby('uid').progress_apply(lambda d: list(d['sid'])))
-            val   = dict(val_df.groupby('uid').progress_apply(lambda d: list(d['sid'])))
-            test  = dict(test_df.groupby('uid').progress_apply(lambda d: list(d['sid'])))
-            return train, val, test
         else:
             raise NotImplementedError
 
