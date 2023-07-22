@@ -15,9 +15,9 @@ class AmazonReviewsDataset(AbstractDataset):
         return 'http://files.grouplens.org/datasets/movielens/ml-20m.zip'
         
 
-    @classmethod
+    """ @classmethod
     def zip_file_content_is_folder(cls):
-        return False
+        return False """
 
     @classmethod
     def all_raw_file_names(cls):
