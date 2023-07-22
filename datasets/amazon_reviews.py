@@ -9,15 +9,9 @@ class AmazonReviewsDataset(AbstractDataset):
     @classmethod
     def code(cls):
         return 'amazon-reviews'
-
-    """ @classmethod
-    def url(cls):
-        return 'http://files.grouplens.org/datasets/movielens/ml-20m.zip' """
         
 
     def load_ratings_df(self):
-        #folder_path = Path('alecmp/KeBERT4Rec/data/amazon_us_product.zip') 
-        #file_path = folder_path.joinpath('rating_50k.csv') #ratings
         df = pd.read_csv('data/ratings.csv', header=0)
         df.columns = ['uid', 'sid', 'rating', 'timestamp']
         #c_file_path = folder_path.joinpath('output_50kk.csv') #movies

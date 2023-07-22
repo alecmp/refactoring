@@ -34,15 +34,6 @@ class AbstractDataset(metaclass=ABCMeta):
     def raw_code(cls):
         return cls.code()
 
-    """ @classmethod
-    @abstractmethod
-    def url(cls):
-        pass """
-
-    @classmethod
-    def is_zipfile(cls):
-        return True
-
     @classmethod
     def zip_file_content_is_folder(cls):
         return True
