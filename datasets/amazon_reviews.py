@@ -10,20 +10,10 @@ class AmazonReviewsDataset(AbstractDataset):
     def code(cls):
         return 'amazon-reviews'
 
-    @classmethod
+    """ @classmethod
     def url(cls):
-        return 'http://files.grouplens.org/datasets/movielens/ml-20m.zip'
+        return 'http://files.grouplens.org/datasets/movielens/ml-20m.zip' """
         
-
-    @classmethod
-    def all_raw_file_names(cls):
-        return ['genome-scores.csv',
-                'genome-tags.csv',
-                'links.csv',
-                'movies.csv',
-                'ratings.csv',
-                'README.txt',
-                'tags.csv']
 
     def load_ratings_df(self):
         #folder_path = Path('alecmp/KeBERT4Rec/data/amazon_us_product.zip') 

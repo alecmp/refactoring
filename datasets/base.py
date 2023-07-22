@@ -34,10 +34,10 @@ class AbstractDataset(metaclass=ABCMeta):
     def raw_code(cls):
         return cls.code()
 
-    @classmethod
+    """ @classmethod
     @abstractmethod
     def url(cls):
-        pass
+        pass """
 
     @classmethod
     def is_zipfile(cls):
@@ -46,10 +46,6 @@ class AbstractDataset(metaclass=ABCMeta):
     @classmethod
     def zip_file_content_is_folder(cls):
         return True
-
-    @classmethod
-    def all_raw_file_names(cls):
-        return []
 
     @abstractmethod
     def load_ratings_df(self):
